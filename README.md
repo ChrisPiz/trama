@@ -45,9 +45,11 @@ Claude Desktop **no** carga skills desde filesystem. Los skills se suben como ZI
 
 1. Descarga el skill empaquetado: [`narrative-continuity.zip`](https://github.com/ChrisPiz/narrative-continuity/raw/main/narrative-continuity.zip)
    O genéralo localmente:
+   O genéralo localmente con todos los módulos:
    ```bash
    git clone https://github.com/ChrisPiz/narrative-continuity.git
-   cd narrative-continuity && zip narrative-continuity.zip SKILL.md
+   cd narrative-continuity
+   zip -r narrative-continuity.zip SKILL.md references scripts templates
    ```
 2. Abre [claude.ai](https://claude.ai) → **Settings → Capabilities → Skills**
 3. Click **Upload skill** y selecciona el ZIP
