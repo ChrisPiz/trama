@@ -8,14 +8,22 @@ Funciona con manuscritos en español e inglés. Soporta sagas multi-volumen y ma
 
 ---
 
-## ¿Qué hace?
+## Funcionalidades
 
-- **Búsqueda con citas:** todas las menciones de un personaje, lugar u objeto, con texto verbatim + capítulo + línea.
-- **Character bible automatizado:** extrae personajes, lugares y objetos del texto. Clasifica por dialog tags, relaciones familiares, sujeto de verbo. Genera scaffold editable.
-- **Auditoría de atributos:** detecta contradicciones explícitas (edad, ojos, pelo, altura, profesión, relaciones). Atribuye claims al dueño correcto (filtra "ojos de Elena" cuando Marta también está en el contexto). Excluye flashbacks ("cuando tenía 12 años") del audit principal.
-- **Línea temporal:** extrae 8 tipos de marcador (fechas absolutas, saltos relativos, días de la semana, estaciones, edades, próximos días, etc.) en español e inglés.
-- **Hilos narrativos:** detecta preguntas abiertas, promesas, personajes huérfanos (freq baja con dialog tag), objetos introducidos con énfasis y nunca usados (Chekhov's gun no disparada).
-- **Mapeo línea → capítulo:** lookup O(log n) para citas siempre legibles.
+| Capacidad | Detalle |
+|---|---|
+| 🔍 **Búsqueda con citas** | Todas las menciones de un personaje, lugar u objeto, con texto verbatim + capítulo + línea. FTS5 sub-ms incluso en 500k palabras. |
+| 📖 **Character bible automatizado** | Extrae personajes, lugares y objetos del texto vía 4 señales (capitalización + dialog tags + relaciones familiares + sujeto de verbo). Clasifica como `character` / `place` / `object` / `unknown`. Genera scaffold markdown editable. |
+| ⚠️ **Auditoría de atributos** | Detecta contradicciones explícitas: edad, ojos, pelo, altura, profesión, relaciones. Atribuye claims al dueño correcto (filtra "ojos de Elena" cuando Marta también está en el contexto). Excluye flashbacks ("cuando tenía 12 años") del audit principal. Severidad: `hard` / `soft` / `drift` / `ok`. |
+| ⏰ **Línea temporal** | Extrae 8 tipos de marcador (fechas absolutas, saltos relativos, días de la semana, estaciones, edades, próximos días, hedge temporal) en ES/EN. Cruza con audit de atributos para validar coherencia (ej. edad vs paso del tiempo narrativo). |
+| 🧵 **Hilos narrativos** | Detecta preguntas abiertas, promesas (`prometió`, `juró`, `voy a`), personajes huérfanos (freq baja con dialog tag), objetos introducidos con énfasis y nunca usados (Chekhov's gun no disparada). Marca `resolved`/`no` con confianza heurística. |
+| 🔁 **Auditoría recurrente** | Cada run crea snapshot timestamped en `runs/<TS>/`. Symlink `current/` apunta al último. `audit-diff.sh` compara dos runs y reporta entidades nuevas/desaparecidas, hilos cerrados o persistentes, cambios de frecuencia. Append-only `audit-log.tsv` para tendencias. Compatible con cron + skill `/schedule`. |
+| 🧠 **Subagentes paralelos** | Para sagas (>150k palabras o multi-volumen), orquesta agentes paralelos por arco/entidad/dimensión. Agrega TSVs y genera reporte final. |
+| 📁 **Multi-formato** | `.txt`, `.md`, `.docx` (pandoc o python-docx), `.rtf` (pandoc o textutil), o carpetas con varios archivos en orden alfabético. |
+| 🌐 **Bilingüe ES/EN** | Detección automática de idioma (heurística de palabras función). Patrones regex separados para capítulos, marcadores temporales, dialog tags, relaciones, atributos. |
+| 🗺️ **Mapeo línea → capítulo** | Lookup O(log n) vía `chapters.tsv`. Toda cita lleva capítulo + línea para navegación inmediata. |
+| 💾 **Workspace persistente** | `~/.narrative-continuity/<hash>/` por defecto. Sobrevive reboots. Override con `NARRATIVE_HOME=/ruta` (ej. iCloud Drive para sync entre máquinas). |
+| 🔍 **FTS5 con acentos** | SQLite FTS5 con `tokenize='unicode61 remove_diacritics 2'` — `anos` encuentra `años`, `marta` encuentra `Marta`. Operadores `AND`/`OR`/`NEAR(A B, N)`. |
 
 ## ¿Qué NO hace?
 
@@ -44,7 +52,6 @@ Disponible inmediatamente — activación automática por triggers en cualquier 
 Claude Desktop **no** carga skills desde filesystem. Los skills se suben como ZIP vía la web:
 
 1. Descarga el skill empaquetado: [`narrative-continuity.zip`](https://github.com/ChrisPiz/narrative-continuity/raw/main/narrative-continuity.zip)
-   O genéralo localmente:
    O genéralo localmente con todos los módulos:
    ```bash
    git clone https://github.com/ChrisPiz/narrative-continuity.git
