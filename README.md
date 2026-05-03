@@ -60,11 +60,11 @@ Claude Desktop **no** carga skills desde filesystem. Los skills se suben como ZI
 
 > **Nota:** la subida de skills personalizadas requiere plan Pro/Team/Enterprise. En plan Free solo están disponibles los skills oficiales de Anthropic.
 
-#### Qué funciona y qué no en Claude.ai
+#### Qué funciona y qué no en Claude.ai / Claude Desktop
 
-El sandbox de Claude.ai es **efímero** — vive mientras dura la conversación. Esto cambia significativamente el comportamiento del skill:
+Claude Desktop **es un cliente** que sincroniza el skill desde tu cuenta de claude.ai y lo ejecuta en el **mismo sandbox** que la web. Aunque corra como app nativa en macOS/Windows, no tiene acceso a tu filesystem — los `.docx` se cargan vía drag & drop al chat. El sandbox es **efímero** (vive mientras dura la conversación), así que todo lo que mencione "persistente" desaparece al cerrar.
 
-| Función | Claude Code (CLI) | Claude.ai (web) |
+| Función | Claude Code (CLI) | Claude.ai web + Desktop |
 |---|---|---|
 | Convertir `.docx`/`.md`/`.rtf` → texto | ✅ | ✅ (subes el archivo al chat) |
 | Búsqueda con citas | ✅ | ✅ |
@@ -80,7 +80,7 @@ El sandbox de Claude.ai es **efímero** — vive mientras dura la conversación.
 | Cron / scheduled audits | ✅ | ❌ No aplica |
 | Apuntar a `/Users/yo/novela.docx` | ✅ | ❌ El sandbox no ve tu filesystem — debes subir el archivo como attachment |
 
-**Conclusión:** en Claude.ai, Trama funciona como **auditor one-shot** — subes el manuscrito, hacés preguntas, todo se pierde al cerrar el chat.
+**Conclusión:** en Claude.ai web y Claude Desktop, Trama funciona como **auditor one-shot** — subes el manuscrito, hacés preguntas, todo se pierde al cerrar el chat.
 
 Si querés acompañar el proceso de escritura (auditar al terminar cada capítulo, comparar versiones, ver tendencias), **instalá en Claude Code**.
 
