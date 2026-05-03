@@ -1,8 +1,8 @@
 # Fiction Auditor
 
-A Claude Code / Anthropic skill that audits **existing** novel manuscripts for continuity, character consistency, timeline coherence, and unresolved narrative threads. Answers questions with **exact citations** (chapter + line + verbatim quote). Never writes prose for you — read-only auditor.
+Skill de Claude Code / Anthropic que audita manuscritos de novela **existentes** en busca de continuidad, consistencia de personajes, coherencia temporal e hilos narrativos sin resolver. Responde con **citas exactas** (capítulo + línea + texto verbatim). Nunca escribe prosa por ti — es un auditor de solo lectura.
 
-Funciona en español e inglés. Documentación interna en español.
+Funciona con manuscritos en español e inglés.
 
 ---
 
