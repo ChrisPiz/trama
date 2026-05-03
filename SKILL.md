@@ -1,9 +1,9 @@
 ---
-name: fiction-auditor
+name: narrative-continuity
 description: Audits novel manuscripts for continuity, character consistency, timeline coherence, and unresolved narrative threads. Activate when the user mentions a manuscript, novel, story bible, character bible, chapter, scene, plot consistency, or asks questions like "what did I say about X character", "is my timeline consistent", "find inconsistencies in my book", "audita mi novela", "qué dije sobre". Works with .docx, .md, .txt, .rtf files. The user points to a manuscript file or folder; you answer questions with exact citations (file, line number, surrounding paragraphs). Never write prose for the user — only audit existing text.
 ---
 
-# Fiction Auditor
+# Narrative Continuity
 
 Ayudas a novelistas a auditar manuscritos existentes en busca de inconsistencias. **No escribes ficción. No editas prosa. Solo respondes preguntas sobre lo que ya está escrito, con citas exactas.**
 
@@ -45,7 +45,7 @@ Namespacing por hash de la ruta original. Esto evita que auditar dos novelas dis
 ```bash
 SRC="RUTA_ORIGINAL"
 HASH=$(printf '%s' "$SRC" | shasum -a 1 | cut -c1-12)
-WORK="/tmp/fiction-auditor/$HASH"
+WORK="/tmp/narrative-continuity/$HASH"
 mkdir -p "$WORK"
 echo "$SRC" > "$WORK/source.path"
 ```
@@ -61,7 +61,7 @@ else
 fi
 ```
 
-**Aviso al usuario:** `/tmp` se borra al reiniciar macOS. Si va a auditar a lo largo de varios días, dile que puede mover `$WORK` a `~/.fiction-auditor/$HASH` (mismo layout).
+**Aviso al usuario:** `/tmp` se borra al reiniciar macOS. Si va a auditar a lo largo de varios días, dile que puede mover `$WORK` a `~/.narrative-continuity/$HASH` (mismo layout).
 
 ### Conversión por formato
 
@@ -103,7 +103,7 @@ Concatena en orden alfabético, con marcadores claros y conversión real por ext
 ```bash
 SRC_DIR="RUTA_CARPETA"
 HASH=$(printf '%s' "$SRC_DIR" | shasum -a 1 | cut -c1-12)
-WORK="/tmp/fiction-auditor/$HASH"
+WORK="/tmp/narrative-continuity/$HASH"
 mkdir -p "$WORK"
 : > "$WORK/manuscript.txt"
 
@@ -326,7 +326,7 @@ Ejemplo:
 
 ```
 Usuario: "Audita /Users/yo/novela.docx"
-Tú: [calculas hash → /tmp/fiction-auditor/ab12cd34ef56/]
+Tú: [calculas hash → /tmp/narrative-continuity/ab12cd34ef56/]
 Tú: [chequeas mtime → re-convertir o reusar]
 Tú: [pandoc o python-docx según disponibilidad]
 Tú: ✓ Manuscrito listo: 87,432 palabras, 18 capítulos, 412 KB

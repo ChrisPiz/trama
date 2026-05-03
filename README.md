@@ -1,4 +1,4 @@
-# Fiction Auditor
+# Narrative Continuity
 
 Skill de Claude Code / Anthropic que audita manuscritos de novela **existentes** en busca de continuidad, consistencia de personajes, coherencia temporal e hilos narrativos sin resolver. Responde con **citas exactas** (capítulo + línea + texto verbatim). Nunca escribe prosa por ti — es un auditor de solo lectura.
 
@@ -32,13 +32,13 @@ Es un **auditor literal**, no un colaborador creativo.
 ```bash
 # Skill global del usuario
 mkdir -p ~/.claude/skills
-git clone https://github.com/ChrisPiz/fiction-auditor.git ~/.claude/skills/fiction-auditor
+git clone https://github.com/ChrisPiz/narrative-continuity.git ~/.claude/skills/narrative-continuity
 ```
 
 O dentro de un plugin:
 
 ```bash
-git clone https://github.com/ChrisPiz/fiction-auditor.git <tu-plugin>/skills/fiction-auditor
+git clone https://github.com/ChrisPiz/narrative-continuity.git <tu-plugin>/skills/narrative-continuity
 ```
 
 ### Otros entornos (Copilot CLI, Gemini CLI, etc.)
@@ -57,7 +57,7 @@ El skill se activa automáticamente cuando mencionas:
 - Consistencia temporal, edad de personaje, parentescos
 - Apuntar a un archivo `.docx`, `.md`, `.txt`, `.rtf`
 
-Activación manual en Claude Code: `Skill fiction-auditor`.
+Activación manual en Claude Code: `Skill narrative-continuity`.
 
 ---
 
@@ -81,7 +81,7 @@ Para Pages o Google Docs: exportar primero a Word o Markdown.
 Cada manuscrito tiene su propio directorio derivado del SHA-1 de la ruta original:
 
 ```
-/tmp/fiction-auditor/
+/tmp/narrative-continuity/
 └── <hash12>/
     ├── source.path        # ruta original para trazabilidad
     ├── manuscript.txt     # versión normalizada
