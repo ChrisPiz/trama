@@ -60,13 +60,6 @@ Claude Desktop **no** carga skills desde filesystem. Los skills se suben como ZI
 
 > **Nota:** la subida de skills personalizadas requiere plan Pro/Team/Enterprise. En plan Free solo están disponibles los skills oficiales de Anthropic.
 
-### Dentro de un plugin propio de Claude Code
-
-```bash
-git clone https://github.com/ChrisPiz/trama.git \
-  ~/.claude/plugins/mi-plugin/skills/trama
-```
-
 ### Otros entornos (Copilot CLI, Gemini CLI, etc.)
 
 El skill sigue el formato Anthropic Skills estándar (`SKILL.md` con frontmatter YAML + módulos en `references/` + scripts en `scripts/`). Cualquier harness compatible lo acepta sin modificación — copia el directorio completo al lugar donde tu harness busque skills.
