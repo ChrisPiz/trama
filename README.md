@@ -1,3 +1,5 @@
+![Narrative Continuity — auditor de continuidad narrativa para manuscritos](assets/header.png)
+
 # Narrative Continuity
 
 Skill de Claude Code / Anthropic que audita manuscritos de novela **existentes** en busca de continuidad, consistencia de personajes, coherencia temporal e hilos narrativos sin resolver. Responde con **citas exactas** (capítulo + línea + texto verbatim). Nunca escribe prosa por ti — es un auditor de solo lectura.
