@@ -54,12 +54,6 @@ Disponible inmediatamente — activación automática por triggers en cualquier 
 Claude Desktop **no** carga skills desde filesystem. Los skills se suben como ZIP vía la web:
 
 1. Descarga el skill empaquetado: [`trama.zip`](https://github.com/ChrisPiz/trama/raw/main/trama.zip)
-   O genéralo localmente con todos los módulos:
-   ```bash
-   git clone https://github.com/ChrisPiz/trama.git
-   cd trama
-   zip -r trama.zip SKILL.md references scripts templates
-   ```
 2. Abre [claude.ai](https://claude.ai) → **Settings → Capabilities → Skills**
 3. Click **Upload skill** y selecciona el ZIP
 4. El skill queda disponible automáticamente en Claude Desktop (sincroniza desde la cuenta)
