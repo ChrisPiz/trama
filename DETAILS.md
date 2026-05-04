@@ -241,9 +241,13 @@ El skill **nunca instala dependencias en silencio** — si falta algo, pregunta 
 | Formato | Conversor preferido | Fallback |
 |---------|---------------------|----------|
 | `.txt`, `.md` | `cp` directo | — |
-| `.docx` | `pandoc` | `python-docx` |
-| `.rtf` | `pandoc` | `textutil` (macOS) |
+| `.docx` (macOS) | `textutil` (nativo, 0 deps) | `pandoc` → `python-docx` |
+| `.docx` (Linux) | `pandoc` | `python-docx` |
+| `.rtf` (macOS) | `textutil` | `pandoc` |
+| `.rtf` (Linux) | `pandoc` | — |
 | Carpeta con varios | concatenación alfabética con marcadores `=== filename ===` | — |
+
+`textutil` se invoca con `-encoding UTF-8` para preservar acentos correctamente en español.
 
 Para Pages o Google Docs: exportar primero a Word o Markdown.
 

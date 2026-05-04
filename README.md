@@ -69,9 +69,11 @@ Listo. La próxima vez que abras `claude` en una terminal, Trama está disponibl
 | Formato | Notas |
 |---------|-------|
 | `.txt`, `.md` | Lectura directa |
-| `.docx` | Vía pandoc o python-docx |
-| `.rtf` | Vía pandoc o textutil (macOS) |
+| `.docx` | En macOS usa `textutil` (preinstalado, sin instalar nada). Cae a `pandoc` o `python-docx` si textutil falla |
+| `.rtf` | En macOS usa `textutil`. Cae a `pandoc` |
 | Carpeta con varios archivos | Concatena en orden alfabético — útil para sagas con un archivo por libro |
+
+En macOS, **no necesitás instalar nada** para `.docx` y `.rtf` — Trama usa la herramienta nativa de macOS (`textutil`). En Linux instalá `pandoc` (`brew install pandoc` / `apt install pandoc`).
 
 Para **Pages** o **Google Docs**: exportá primero a Word o Markdown.
 

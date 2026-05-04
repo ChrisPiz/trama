@@ -84,7 +84,23 @@ convert_one() {
       cat "$src" >> "$out"
       ;;
     docx)
-      if command -v pandoc >/dev/null 2>&1; then
+      # En macOS, textutil es preinstalado y suficiente para auditoría de prosa.
+      # Cae a pandoc (mejor con tablas/imágenes complejas) o python-docx si textutil
+      # no está. En Linux directo a pandoc → python-docx.
+      if command -v textutil >/dev/null 2>&1; then
+        textutil -convert txt -encoding UTF-8 "$src" -stdout 2>/dev/null >> "$out" || {
+          echo "WARN=textutil_failed_trying_fallback:$src" >&2
+          if command -v pandoc >/dev/null 2>&1; then
+            pandoc "$src" -t plain 2>/dev/null >> "$out" || {
+              echo "ERROR=converter_failed:$src" >&2
+              return 1
+            }
+          else
+            echo "ERROR=textutil_failed_and_no_pandoc:$src" >&2
+            return 1
+          fi
+        }
+      elif command -v pandoc >/dev/null 2>&1; then
         pandoc "$src" -t plain 2>/dev/null >> "$out" || {
           echo "ERROR=pandoc_failed:$src" >&2
           return 1
@@ -108,14 +124,22 @@ print('\n'.join(p.text for p in doc.paragraphs if p.text.strip()))
       fi
       ;;
     rtf)
-      if command -v pandoc >/dev/null 2>&1; then
+      # textutil primero en macOS (nativo), pandoc como fallback.
+      if command -v textutil >/dev/null 2>&1; then
+        textutil -convert txt -encoding UTF-8 "$src" -stdout 2>/dev/null >> "$out" || {
+          if command -v pandoc >/dev/null 2>&1; then
+            pandoc "$src" -t plain >> "$out" 2>/dev/null || {
+              echo "ERROR=converter_failed:$src" >&2
+              return 1
+            }
+          else
+            echo "ERROR=textutil_failed:$src" >&2
+            return 1
+          fi
+        }
+      elif command -v pandoc >/dev/null 2>&1; then
         pandoc "$src" -t plain >> "$out" 2>/dev/null || {
           echo "ERROR=pandoc_failed:$src" >&2
-          return 1
-        }
-      elif command -v textutil >/dev/null 2>&1; then
-        textutil -convert txt "$src" -stdout >> "$out" 2>/dev/null || {
-          echo "ERROR=textutil_failed:$src" >&2
           return 1
         }
       else
