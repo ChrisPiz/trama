@@ -1,0 +1,36 @@
+{
+  "name": "trama",
+  "id": "trama",
+  "owner": {
+    "name": "ChrisPiz",
+    "url": "https://github.com/ChrisPiz"
+  },
+  "metadata": {
+    "description": "Trama — narrative continuity auditor for novels. Verbatim citations, character bible, timeline drift, unresolved threads. Bilingual ES/EN.",
+    "version": "1.0.0"
+  },
+  "plugins": [
+    {
+      "name": "trama",
+      "source": "./",
+      "description": "Audit your novel for continuity inconsistencies, character contradictions, timeline drift, and unresolved narrative threads. Verbatim citations only — chapter, line, exact text. Bilingual ES/EN.",
+      "version": "1.0.0",
+      "author": {
+        "name": "ChrisPiz"
+      },
+      "homepage": "https://github.com/ChrisPiz/trama",
+      "license": "MIT",
+      "keywords": [
+        "novel",
+        "manuscript",
+        "writing",
+        "continuity",
+        "audit",
+        "character-bible",
+        "spanish",
+        "english"
+      ],
+      "category": "writing"
+    }
+  ]
+}

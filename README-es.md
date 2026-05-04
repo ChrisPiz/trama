@@ -53,14 +53,26 @@ Es un **auditor literal**, no un colaborador creativo. Solo te dice lo que ya es
 
 ## Instalación
 
-Trama funciona en **[Claude Code](https://claude.com/claude-code)** (CLI de Anthropic). Es la única manera de usarlo con todas sus capacidades.
+Trama funciona en **[Claude Code](https://claude.com/claude-code)** (CLI de Anthropic). Lo instalas como plugin — un comando dentro de Claude Code:
+
+```
+/plugin marketplace add ChrisPiz/trama
+/plugin install trama@trama
+```
+
+Listo. Trama queda disponible al instante, con `/plugin update trama` para actualizar. Mismo plan Pro/Max que ya pagas — sin costo extra.
+
+<details>
+<summary>Instalación manual (sin plugin manager)</summary>
 
 ```bash
 mkdir -p ~/.claude/skills
-git clone https://github.com/ChrisPiz/trama.git ~/.claude/skills/trama
+git clone https://github.com/ChrisPiz/trama.git ~/.claude/skills/trama-repo
+ln -sf ~/.claude/skills/trama-repo/skills/trama ~/.claude/skills/trama
 ```
 
-Listo. La próxima vez que abras `claude` en una terminal, Trama está disponible. Mismo plan Pro/Max que ya pagas — sin costo extra.
+Actualizas con `git -C ~/.claude/skills/trama-repo pull`.
+</details>
 
 > ⚠️ **Claude Desktop / Claude.ai web** funcionan en modo limitado (auditor one-shot, sin historial entre sesiones). Ver [DETAILS.md](DETAILS.md) para detalles.
 

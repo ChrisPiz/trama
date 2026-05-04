@@ -129,7 +129,9 @@ bash scripts/audit-run.sh /ruta/novela.docx --all --note "v3 - pre-beta"
 Si escribes activamente todos los días, programa:
 
 ```bash
-# crontab -e
+# crontab -e — ajusta la ruta del script según el método de instalación.
+# Plugin install: ~/.claude/plugins/cache/trama/trama/<version>/skills/trama/scripts/
+# Manual install: ~/.claude/skills/trama/scripts/
 0 23 * * * /bin/bash $HOME/.claude/skills/trama/scripts/audit-run.sh /ruta/novela.docx --note "auto-nightly"
 ```
 
